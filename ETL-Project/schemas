@@ -1,0 +1,48 @@
+-- Create tables for raw data to be loaded into
+CREATE TABLE billboard_top (
+id INT PRIMARY KEY,
+	Title VARCHAR(100),
+	Artist VARCHAR(100),
+	Year INT,
+	Source VARCHAR(50)
+);
+
+CREATE TABLE insider (
+id INT PRIMARY KEY,
+	Title VARCHAR(100),
+	Artist VARCHAR(100),
+	Year INT,
+	Source VARCHAR(50)
+);
+
+CREATE TABLE spotify (
+id INT PRIMARY KEY,
+	Title VARCHAR(100),
+	Artist VARCHAR(100),
+	Year INT,
+	Source VARCHAR(50)
+);
+
+-- check loaded tables
+SELECT * FROM insider;
+SELECT * FROM billboard_top;
+SELECT * FROM spotify;
+
+-- create combined table
+CREATE TABLE combined_music (
+	Title VARCHAR(100),
+	Artist VARCHAR(100),
+	Year INT,
+	Source VARCHAR(50)
+);
+ -- check combined table load
+SELECT * FROM combined_music;
+
+-- Joins tables
+INSERT INTO combined_music(Title, Artist, Year, Source)
+	SELECT * FROM insider 
+    UNION
+    SELECT * FROM billboard_top
+    UNION
+    SELECT * FROM spotify
+;
